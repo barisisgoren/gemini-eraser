@@ -13,7 +13,7 @@ test('toWorkerScriptUrl should reuse existing policy when available', () => {
   const policy = { createScriptURL: (value) => `trusted:${value}` };
   const env = {
     trustedTypes: {
-      getPolicy: (name) => (name === 'gemini-watermark-remover' ? policy : null),
+      getPolicy: (name) => (name === 'gemini-eraser' ? policy : null),
       createPolicy: () => {
         throw new Error('createPolicy should not be called');
       }
@@ -30,7 +30,7 @@ test('toWorkerScriptUrl should create policy when missing', () => {
     trustedTypes: {
       getPolicy: () => null,
       createPolicy: (name, rules) => {
-        created = name === 'gemini-watermark-remover' && typeof rules?.createScriptURL === 'function';
+        created = name === 'gemini-eraser' && typeof rules?.createScriptURL === 'function';
         return { createScriptURL: (value) => `trusted:${rules.createScriptURL(value)}` };
       }
     }

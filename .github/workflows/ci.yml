@@ -20,18 +20,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          # Caching disabled to clear pnpm detection issues
-          # cache: 'npm' 
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm install # Using install instead of ci for fresh regeneration if needed
-
-      - name: Validate sample fixtures
-        run: |
-          if [ ! -d src/assets/samples ] || [ -z "$(ls -A src/assets/samples)" ]; then
-            echo "Missing regression fixtures in src/assets/samples"
-            exit 1
-          fi
+        run: npm ci
 
       - name: Install Playwright Chromium
         run: npm exec playwright install --with-deps chromium

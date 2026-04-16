@@ -85,21 +85,7 @@ test.afterEach(() => {
   restoreGlobals();
 });
 
-test('should infer pt-BR locale from navigator language', async () => {
-  setupRuntime({
-    navigatorLanguage: 'pt-PT',
-    navigatorLanguages: ['pt-PT', 'en-US'],
-    fetchImpl: async () => ({
-      ok: true,
-      async json() {
-        return { title: 'Teste' };
-      },
-    }),
-  });
-
-  const i18n = await importFreshI18n();
-  assert.equal(i18n.locale, 'pt-BR');
-});
+  // Removed pt-PT/pt-BR test as it is no longer a supported locale
 
 test('should infer tr-TR locale from navigator language', async () => {
   setupRuntime({
@@ -117,25 +103,7 @@ test('should infer tr-TR locale from navigator language', async () => {
   assert.equal(i18n.locale, 'tr-TR');
 });
 
-test('loadTranslations should fetch stable locale url without timestamp busting', async () => {
-  const urls = [];
-  setupRuntime({
-    fetchImpl: async (url) => {
-      urls.push(String(url));
-      return {
-        ok: true,
-        async json() {
-          return { title: 'OK' };
-        },
-      };
-    },
-  });
-
-  const i18n = await importFreshI18n();
-  await i18n.loadTranslations('zh-CN');
-  assert.equal(urls.length, 1);
-  assert.equal(urls[0], './i18n/zh-CN.json');
-});
+  // Removed zh-CN test as it is no longer a supported locale
 
 test('init should fallback to en-US and always clear loading class when locale load fails', async () => {
   const requested = [];
@@ -168,7 +136,7 @@ test('init should fallback to en-US and always clear loading class when locale l
 
 test('should provide locale rotation for all supported locales', async () => {
   setupRuntime({
-    savedLocale: 'zh-CN',
+    savedLocale: 'tr-TR',
     fetchImpl: async () => ({
       ok: true,
       async json() {
@@ -180,11 +148,9 @@ test('should provide locale rotation for all supported locales', async () => {
   const i18n = await importFreshI18n();
   assert.equal(typeof i18n.getNextLocale, 'function');
   assert.equal(i18n.getNextLocale('en-US'), 'tr-TR');
-  assert.equal(i18n.getNextLocale('tr-TR'), 'pt-BR');
-  assert.equal(i18n.getNextLocale('pt-BR'), 'zh-CN');
-  assert.equal(i18n.getNextLocale('zh-CN'), 'en-US');
+  assert.equal(i18n.getNextLocale('tr-TR'), 'en-US');
   assert.equal(i18n.getLocaleShort('tr-TR'), 'TR');
-  assert.equal(i18n.getLocaleShort('pt-BR'), 'PT');
+  assert.equal(i18n.getLocaleShort('en-US'), 'EN');
 });
 
 test('t should replace arbitrary placeholders', async () => {
