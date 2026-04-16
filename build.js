@@ -251,7 +251,7 @@ function watchWithDebounce(targetPath, onChange, recursive = true) {
 
 if (serveDistOnly) {
   if (!existsSync(distDir)) {
-    console.error('dist directory is missing. Run `pnpm build` first.');
+    console.error('dist directory is missing. Run `npm run build` first.');
     process.exit(1);
   }
   await serveStaticDist(distDir);

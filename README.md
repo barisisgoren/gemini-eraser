@@ -13,19 +13,19 @@ A client-side tool that removes visible watermarks from Gemini AI-generated imag
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Development server
-pnpm dev
+npm run dev
 
 # Production build
-pnpm build
+npm run build
 
 # Local preview (offline-capable after build)
-pnpm serve
+npm run serve
 ```
 
-Open `http://localhost:4173` in your browser after running `pnpm serve`.  
+Open `http://localhost:4173` in your browser after running `npm run serve`.  
 Do **not** open `index.html` directly via `file://`.
 
 > **Note:** Disable canvas fingerprint defender extensions (e.g. Canvas Fingerprint Defender) to avoid processing errors.
@@ -57,7 +57,7 @@ gemini-eraser/
 ## Testing
 
 ```bash
-pnpm test
+npm test
 ```
 
 ## Limitations
