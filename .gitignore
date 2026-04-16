@@ -19,3 +19,7 @@ yarn-error.log*
 .artifacts
 .npm-cache-local
 .npm-tmp-cache
+
+.vscode/
+sync.ps1
+package-lock.json
