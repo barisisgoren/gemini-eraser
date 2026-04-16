@@ -1,0 +1,5 @@
+name = "gemini-eraser"
+compatibility_date = "2025-01-16"
+
+[assets]
+directory = "./dist"

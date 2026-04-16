@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-title-key="page.how.title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works - Gemini-Eraser</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l-1.9 5.8-5.8 1.9 5.8 1.9 1.9 5.8 1.9-5.8 5.8-1.9-5.8-1.9z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="bg-orange-50/80 dark:bg-ink text-stone-900 dark:text-orange-50 antialiased selection:bg-primary selection:text-ink flex min-h-screen flex-col loading transition-colors duration-200">
+
+  <header class="sticky top-0 z-50 border-b border-orange-500/20 bg-ink/95 text-white backdrop-blur-md">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3">
+        <svg class="h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 3-1.9 5.8-5.8 1.9 5.8 1.9 1.9 5.8 1.9-5.8 5.8-1.9-5.8-1.9Z"></path>
+        </svg>
+        <h1 class="text-sm font-black tracking-tight text-white md:text-xl">
+          <a href="./" class="transition-colors hover:text-accent" title="Gemini-Eraser">Gemini <span class="text-orange-200">-Eraser</span></a>
+        </h1>
+      </div>
+      <nav class="flex items-center gap-2 text-sm font-medium text-orange-100 md:gap-4">
+        <a href="index.html" class="hidden rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-accent md:inline-flex" data-i18n="nav.home">Home</a>
+        <a href="terms.html" class="hidden rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-accent md:inline-flex" data-i18n="nav.terms">Terms of Use</a>
+        <button id="themeToggle" class="rounded-lg p-2 text-orange-100 transition-colors hover:bg-white/10 hover:text-accent">
+          <svg class="hidden h-5 w-5 dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg class="block h-5 w-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <select id="langSwitch" class="rounded-lg border border-orange-400/40 bg-white/10 px-3 py-1 text-orange-50 transition-colors hover:bg-white/15">
+          <option value="tr-TR">T&#252;rk&#231;e</option>
+          <option value="en-US">English</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-10 text-center">
+        <h2 class="mb-4 text-3xl font-black text-stone-900 dark:text-orange-50 md:text-4xl" data-i18n="page.how.heading">How It Works</h2>
+        <p class="text-sm text-stone-500 dark:text-orange-100/60" data-i18n="page.updated">Last updated: April 16, 2026</p>
+        <p class="mx-auto mt-4 max-w-3xl text-base text-stone-600 dark:text-orange-100/75 md:text-lg" data-i18n="page.how.subtitle">
+          The app estimates Gemini's visible watermark area and reverses the blend locally instead of sending your image anywhere.
+        </p>
+      </div>
+
+      <div class="grid gap-6">
+        <section class="rounded-[1.5rem] border border-orange-200 bg-white/90 p-6 shadow-card dark:border-orange-900/40 dark:bg-stone-950/80">
+          <h3 class="mb-3 text-xl font-black text-stone-900 dark:text-orange-50">Genel Mantık</h3>
+          <p class="text-sm leading-relaxed text-stone-600 dark:text-orange-100/75 md:text-base">
+            Araç, Gemini tarafında görünen filigranın konumunu ve boyutunu tahmin eder. Ardından bu görünür katmanı matematiksel olarak tersine çevirerek sonucu olabildiğince temiz bir biçimde yeniden oluşturur. Bu yaklaşım klasik sunucu tabanlı düzeltmeler yerine doğrudan tarayıcıda çalışır.
+          </p>
+        </section>
+
+        <section class="rounded-[1.5rem] border border-red-200 bg-white/90 p-6 shadow-card dark:border-red-900/40 dark:bg-stone-950/80">
+          <h3 class="mb-3 text-xl font-black text-stone-900 dark:text-orange-50" data-i18n="page.how.process.title">1. Detect the expected watermark area</h3>
+          <p class="text-sm leading-relaxed text-stone-600 dark:text-orange-100/75 md:text-base" data-i18n="page.how.process.body">The app uses Gemini sizing and placement rules to find the most likely visible watermark region.</p>
+        </section>
+
+        <section class="rounded-[1.5rem] border border-orange-200 bg-white/90 p-6 shadow-card dark:border-orange-900/40 dark:bg-stone-950/80">
+          <h3 class="mb-3 text-xl font-black text-stone-900 dark:text-orange-50" data-i18n="page.how.reverse.title">2. Reverse the visible blend</h3>
+          <p class="mb-5 text-sm leading-relaxed text-stone-600 dark:text-orange-100/75 md:text-base" data-i18n="page.how.reverse.body">Because the visible overlay pattern is known, the source pixels can be reconstructed mathematically instead of painted over.</p>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-xl border border-orange-200 bg-orange-50 p-4 dark:border-orange-900/40 dark:bg-stone-900/70">
+              <p class="mb-2 text-xs font-bold uppercase tracking-[0.24em] text-primary" data-i18n="page.how.formula.title">Formula</p>
+              <code class="block break-words text-sm text-stone-900 dark:text-orange-50">watermarked = alpha * logo + (1 - alpha) * original</code>
+              <p class="mt-3 text-sm text-stone-600 dark:text-orange-100/75" data-i18n="page.how.formula.watermarked">This equation represents the visible watermarked image.</p>
+            </div>
+            <div class="rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-900/40 dark:bg-stone-900/70">
+              <p class="mb-2 text-xs font-bold uppercase tracking-[0.24em] text-secondary" data-i18n="page.how.formula.title">Formula</p>
+              <code class="block break-words text-sm text-stone-900 dark:text-orange-50">original = (watermarked - alpha * logo) / (1 - alpha)</code>
+              <p class="mt-3 text-sm text-stone-600 dark:text-orange-100/75" data-i18n="page.how.formula.original">This inverse equation is applied channel by channel to restore the original pixels.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] border border-yellow-200 bg-white/90 p-6 shadow-card dark:border-yellow-900/30 dark:bg-stone-950/80">
+          <h3 class="mb-3 text-xl font-black text-stone-900 dark:text-orange-50" data-i18n="page.how.detection.title">3. Apply Gemini sizing rules</h3>
+          <p class="mb-5 text-sm leading-relaxed text-stone-600 dark:text-orange-100/75 md:text-base" data-i18n="page.how.detection.body">The remover switches between calibrated watermark templates and margins before any adaptive refinement is attempted.</p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse text-left text-sm">
+              <thead>
+                <tr class="border-b border-orange-200 text-stone-500 dark:border-orange-900/40 dark:text-orange-100/60">
+                  <th class="py-3 pr-4 font-semibold" data-i18n="page.how.table.condition">Condition</th>
+                  <th class="py-3 pr-4 font-semibold" data-i18n="page.how.table.size">Watermark size</th>
+                  <th class="py-3 pr-4 font-semibold" data-i18n="page.how.table.right">Right margin</th>
+                  <th class="py-3 font-semibold" data-i18n="page.how.table.bottom">Bottom margin</th>
+                </tr>
+              </thead>
+              <tbody class="text-stone-700 dark:text-orange-50">
+                <tr class="border-b border-orange-100 dark:border-orange-900/25">
+                  <td class="py-3 pr-4" data-i18n="page.how.table.large">Width &gt; 1024 and height &gt; 1024</td>
+                  <td class="py-3 pr-4">96 x 96</td>
+                  <td class="py-3 pr-4">64px</td>
+                  <td class="py-3">64px</td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-4" data-i18n="page.how.table.small">All other supported sizes</td>
+                  <td class="py-3 pr-4">48 x 48</td>
+                  <td class="py-3 pr-4">32px</td>
+                  <td class="py-3">32px</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="rounded-[1.5rem] border border-orange-200 bg-white/90 p-6 shadow-card dark:border-orange-900/40 dark:bg-stone-950/80">
+          <h3 class="mb-3 text-xl font-black text-stone-900 dark:text-orange-50" data-i18n="page.how.offline.title">4. Keep processing local</h3>
+          <p class="text-sm leading-relaxed text-stone-600 dark:text-orange-100/75 md:text-base" data-i18n="page.how.offline.body">Once the page is loaded, the worker, styles, and locale files run locally so the image stays on the device.</p>
+        </section>
+      </div>
+
+      <section class="mt-6 rounded-[1.5rem] border border-yellow-200 bg-white/90 p-6 shadow-card dark:border-yellow-900/30 dark:bg-stone-950/80">
+        <h3 class="mb-3 text-xl font-black text-stone-900 dark:text-orange-50">Sonuç</h3>
+        <p class="text-sm leading-relaxed text-stone-600 dark:text-orange-100/75 md:text-base">
+          Kısa özetle: görsel eklenir, filigran bölgesi tespit edilir, karışım yerelde tersine çevrilir ve temiz sonuç indirmeye hazır hale getirilir. Bu sayede kullanıcı hızlı bir akışla sonucu görebilir.
+        </p>
+      </section>
+
+      <div class="mt-12 text-center">
+        <a href="index.html" class="inline-flex items-center gap-2 rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-secondary md:text-base">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          <span data-i18n="page.how.back">Back to the remover</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-auto border-t border-orange-500/20 bg-ink py-8 text-white">
+    <div class="mx-auto max-w-7xl px-4 text-center">
+      <p class="mb-4 text-sm text-orange-100/75" data-i18n="footer.desc">A small open-source Gemini image cleanup tool for responsible local use.</p>
+      <div class="flex flex-wrap items-center justify-center gap-4 text-sm font-medium">
+        <a href="index.html" class="transition-colors hover:text-accent" data-i18n="nav.home">Home</a>
+        <a href="terms.html" class="transition-colors hover:text-accent" data-i18n="nav.terms">Terms of Use</a>
+        <a href="https://github.com/barisisgoren" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-accent">
+          <span data-i18n="footer.github">GitHub</span> / barisisgoren
+        </a>
+      </div>
+      <div class="mt-8 border-t border-orange-500/20 pt-4 text-xs text-orange-100/55">
+        <p data-i18n="footer.copyright">Copyright 2026 Baris Isgoren.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="staticPage.js"></script>
+</body>
+</html>
