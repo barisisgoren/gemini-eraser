@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
+import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 
 import { chromium } from 'playwright';
@@ -56,9 +57,10 @@ const SUBPIXEL_SHIFTS = [-0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75];
 const SUBPIXEL_SCALES = [0.98, 0.99, 1, 1.01, 1.02];
 
 test('sample asset manifest should classified correctly', async () => {
-    const files = (await readdir(SAMPLE_DIR))
+    const exists = existsSync(SAMPLE_DIR);
+    const files = exists ? (await readdir(SAMPLE_DIR))
         .filter((name) => IMAGE_EXTENSIONS.has(path.extname(name).toLowerCase()))
-        .sort((a, b) => a.localeCompare(b));
+        .sort((a, b) => a.localeCompare(b)) : [];
 
     assert.equal(files.length, 0, 'Samples directory should be empty when no samples are provided');
 });
