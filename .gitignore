@@ -22,4 +22,3 @@ yarn-error.log*
 
 .vscode/
 sync.ps1
-package-lock.json
