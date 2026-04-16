@@ -28,7 +28,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       - name: Validate sample fixtures
         run: |
@@ -38,10 +38,10 @@ jobs:
           fi
 
       - name: Install Playwright Chromium
-        run: pnpm exec playwright install --with-deps chromium
+        run: npm exec playwright install --with-deps chromium
 
       - name: Build
-        run: pnpm build
+        run: npm build
 
       - name: Test
-        run: pnpm test
+        run: npm test
